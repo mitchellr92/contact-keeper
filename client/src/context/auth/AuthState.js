@@ -28,7 +28,7 @@ const AuthState = props => {
   // Load user
   const loadUser = async () => {
     if (localStorage.token) {
-      setAuthToken(localStorage.token)
+      setAuthToken(localStorage.token);
     }
 
     try {
@@ -91,7 +91,7 @@ const AuthState = props => {
   };
 
   // Logout
-  const logout = () => console.log("logout");
+  const logout = () => dispatch({ type: LOGOUT });
 
   // Clear errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
