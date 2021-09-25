@@ -75,12 +75,12 @@ router.put("/:id", auth, async (req, res) => {
   if (type) contactFields.type = type;
 
   try {
-    let contact = await contact.findById(req.params.id);
+    let contact = await Contact.findById(req.params.id);
 
     if (!contact) return res.status(404).json({ msg: "Contact not found" });
 
     // Make sure user owns contact
-    if (contact.user.toString !== req.user.id) {
+    if (contact.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "Not authorized" });
     }
 
@@ -103,13 +103,14 @@ router.put("/:id", auth, async (req, res) => {
 // @desc      Get all users contacts
 // @access    Private
 router.delete("/:id", auth, async (req, res) => {
+  console.log(req.user.id);
   try {
-    let contact = await contact.findById(req.params.id);
+    let contact = await Contact.findById(req.params.id);
 
     if (!contact) return res.status(404).json({ msg: "Contact not found" });
 
     // Make sure user owns contact
-    if (contact.user.toString !== req.user.id) {
+    if (contact.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "Not authorized" });
     }
 
