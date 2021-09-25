@@ -18,11 +18,11 @@ export default (state, action) => {
         ...state,
         contacts: action.payload,
         loading: false
-      }
+      };
     case ADD_CONTACT:
       return {
         ...state,
-        contacts: [...state.contacts, action.payload],
+        contacts: [action.payload, ...state.contacts],
         loading: false
       };
     case UPDATE_CONTACT:
@@ -37,7 +37,7 @@ export default (state, action) => {
       return {
         ...state,
         contacts: state.contacts.filter(
-          contact => contact.id !== action.payload
+          contact => contact._id !== action.payload
         ),
         loading: false
       };
@@ -48,7 +48,7 @@ export default (state, action) => {
         filtered: null,
         error: null,
         current: null
-      }
+      };
     case SET_CURRENT:
       return {
         ...state,
