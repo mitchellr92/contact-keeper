@@ -30,11 +30,11 @@ const ContactState = props => {
     try {
       const res = await axios.get("/api/contacts");
 
-      console.log(res.data.contacts)
+      console.log(res.data.contacts);
 
       dispatch({
         type: GET_CONTACTS,
-        payload: res.data
+        payload: res.data.contacts
       });
     } catch (err) {
       dispatch({
@@ -64,6 +64,11 @@ const ContactState = props => {
   // Delete contact
   const deleteContact = id => {
     dispatch({ type: DELETE_CONTACT, payload: id });
+  };
+
+  //  Clear contacts
+  const clearContacts = () => {
+    dispatch({ type: CLEAR_CONTACTS });
   };
 
   // Set current contact
@@ -105,7 +110,8 @@ const ContactState = props => {
         updateContact,
         filterContacts,
         clearFilter,
-        getContacts
+        getContacts,
+        clearContacts
       }}
     >
       {props.children}
